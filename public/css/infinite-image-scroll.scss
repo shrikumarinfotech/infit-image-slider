@@ -1,0 +1,51 @@
+// Module Continious Image Carousel
+.module-cont-img-carousel{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #b1b1b1;
+    overflow: hidden;
+
+    // This div will animate
+    .module-carousel-wrapper{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        position: relative;
+        width: auto;
+        height: inherit;
+        
+        .module-carousel-slides{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            top: 0;
+            width: auto;
+            height: inherit;
+
+            .slide{
+                position: relative;
+                display: block;
+                width: 150px;
+                height: 100px;
+                overflow: hidden;
+
+                .slide-image{
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    width: inherit;
+                    height: inherit;
+
+                    .slide-image-object{
+                        width: inherit;
+                        height: inherit;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
