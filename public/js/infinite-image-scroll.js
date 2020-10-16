@@ -1,4 +1,6 @@
 // function for infinite image scroll
+'use strict';
+
 jQuery.noConflict();
 jQuery(document).ready(function( $ ){
     // Continious Image Carousel: Working Version
