@@ -1,4 +1,4 @@
-.module-cont-img-carousel {
+.module-infth-image-slider {
   position: relative;
   margin: 0;
   padding: 0;
@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.module-cont-img-carousel .module-carousel-wrapper {
+.module-infth-image-slider .module-infth-image-wrapper {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -25,7 +25,7 @@
   height: inherit;
 }
 
-.module-cont-img-carousel .module-carousel-wrapper .module-carousel-slides {
+.module-infth-image-slider .module-infth-image-wrapper .module-infth-image-slides {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,7 +41,7 @@
   height: inherit;
 }
 
-.module-cont-img-carousel .module-carousel-wrapper .module-carousel-slides .slide {
+.module-infth-image-slider .module-infth-image-wrapper .module-infth-image-slides .infth-slide {
   position: relative;
   display: block;
   width: 150px;
@@ -49,17 +49,17 @@
   overflow: hidden;
 }
 
-.module-cont-img-carousel .module-carousel-wrapper .module-carousel-slides .slide .slide-image {
+.module-infth-image-slider .module-infth-image-wrapper .module-infth-image-slides .infth-slide .infth-slide-image {
   margin-left: 5px;
   margin-right: 5px;
   width: inherit;
   height: inherit;
 }
 
-.module-cont-img-carousel .module-carousel-wrapper .module-carousel-slides .slide .slide-image .slide-image-object {
+.module-infth-image-slider .module-infth-image-wrapper .module-infth-image-slides .infth-slide .infth-slide-image .infth-slide-image-object {
   width: inherit;
   height: inherit;
   -o-object-fit: cover;
      object-fit: cover;
 }
-/*# sourceMappingURL=wp-infinite-image-scroll.css.map */
+/*# sourceMappingURL=infth-image-slider.css.map */

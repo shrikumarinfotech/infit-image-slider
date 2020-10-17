@@ -3,11 +3,11 @@
 
 jQuery.noConflict();
 jQuery(document).ready(function( $ ){
-    // Continious Image Carousel: Working Version
-    function imageInfiniteCarouselAnimate(){
-        // Define the elements for carousel
-        const dataDiv = $('.module-carousel-wrapper');
-        let dataDivContent = $(dataDiv).find('.module-carousel-slides');
+    // INFTH Image Slider: Working Version
+    function infthImageSliderAnimate(){
+        // Define the elements for slider
+        const dataDiv = $('.module-infth-image-wrapper');
+        let dataDivContent = $(dataDiv).find('.module-infth-image-slides');
         let dataDivContentLength = dataDivContent.length;
         // Define window width
         let totalWindowWidth = $(window).width();
@@ -15,7 +15,7 @@ jQuery(document).ready(function( $ ){
             totalWindowWidth = $(window).width();
         });
         // Append duplicate div elements to fill the content area
-        function carouselLoop(){
+        function sliderLoop(){
             if( dataDivContentLength < totalWindowWidth){ // *minimum slide number is 6: important
                 for( let i = 0; i < 3; i++){ // * number of copies can be opted from html dynamically
                     var dataDivContentNew = $(dataDiv).html();
@@ -23,12 +23,12 @@ jQuery(document).ready(function( $ ){
                 }
             }
         }
-        carouselLoop();
+        sliderLoop();
         // Define device width
         let dataDivWidth;
         dataDiv.promise().done(function(){
             // re-assign values
-            dataDivContent = $(dataDiv).find('.module-carousel-slides');
+            dataDivContent = $(dataDiv).find('.module-infth-image-slides');
             dataDivContentLength = dataDivContent.length;
             dataDivWidth = dataDivContent.width() * ( dataDivContentLength / 2 );
         }); // After appending is done get the width of two(2) elements or
@@ -43,7 +43,6 @@ jQuery(document).ready(function( $ ){
                     duration: 20000, // Animation duration * can be opted from html dynamically
                     easing: 'linear',
                     complete: function(){
-                        // console.log('animation complete');
                         // Reset the position after animation is completed
                         dataDiv.css('left', 0);
                     }
@@ -51,9 +50,9 @@ jQuery(document).ready(function( $ ){
             }, 1000); // 1000 is interval duration
         });
     }
-    // Check if carousel module exists in DOM
-    if($('.module-cont-img-carousel').length !== 0){
+    // Check if slider module exists in DOM
+    if($('.module-infth-image-slider').length !== 0){
         // If yes, run the funtion
-        imageInfiniteCarouselAnimate();
+        infthImageSliderAnimate();
     }
 });

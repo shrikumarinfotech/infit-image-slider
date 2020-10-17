@@ -1,5 +1,5 @@
 // Module Continious Image Carousel
-.module-cont-img-carousel{
+.module-infth-image-slider{
     position: relative;
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@
     overflow: hidden;
 
     // This div will animate
-    .module-carousel-wrapper{
+    .module-infth-image-wrapper{
         position: absolute;
         display: flex;
         flex-direction: row;
@@ -18,7 +18,7 @@
         width: auto;
         height: inherit;
         
-        .module-carousel-slides{
+        .module-infth-image-slides{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -26,20 +26,20 @@
             width: auto;
             height: inherit;
 
-            .slide{
+            .infth-slide{
                 position: relative;
                 display: block;
                 width: 150px;
                 height: 100px;
                 overflow: hidden;
 
-                .slide-image{
+                .infth-slide-image{
                     margin-left: 5px;
                     margin-right: 5px;
                     width: inherit;
                     height: inherit;
 
-                    .slide-image-object{
+                    .infth-slide-image-object{
                         width: inherit;
                         height: inherit;
                         object-fit: cover;
