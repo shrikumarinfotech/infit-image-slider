@@ -173,34 +173,35 @@ add_action('wp_enqueue_scripts', 'infth_image_slider_enqueue_script');
  * Reference URI: https://developer.wordpress.org/plugins/settings/custom-settings-page/
  */
 function infth_image_slider_settings_init(){
-    // Register a new setting for 'infthimageslider' page
-    register_setting('infthimageslider', 'infth_image_slider_options');
+    // Register a new setting for 'infth_image_slider' page
+    register_setting('infth_image_slider', 'infth_image_slider_options');
 
-    // Register a new section in the 'infthimageslider' page
+    // Register a new section in the 'infth_image_slider' page
     add_settings_section(
         'infth_image_slider_section_developers',
-        __( 'Options', 'infthimageslider'),
+        __( 'Update Options:', 'infth_image_slider'),
         'infth_image_slider_section_developers_callback',
-        'infthimageslider'
+        'infth_image_slider'
     );
 
-    // Register a new field in the 'infthimageslider_section_developers' section, inside th
+    // Register a new field in the 'infth_image_slider_section_developers' section, inside th
     add_settings_field(
         'infth_image_slider_field_speed',
-            __( 'Slider Speed', 'infthimageslider' ),
+            __( 'Slider Speed:', 'infth_image_slider' ),
         'infth_image_slider_field_speed_cb',// cb stands for callback: https://developer.wordpress.org/reference/functions/add_settings_field/
-        'infthimageslider',
+        'infth_image_slider',
         'infth_image_slider_section_developers',
         array(
-            'label_for' =>  'infth_image_slider_field_speed',
-            'class'     =>  'infth_image_slider_row',
+            'name'          => 'infth_image_slider_field_speed',
+            'label_for'     => 'infth_image_slider_field_speed',
+            'class'         => 'infth_image_slider_row',
             'infth_image_slider_custom_data'  =>  'custom',
         )
     );
 }
 
 /**
- * Register infthimageslider_settings_init to the admin_init action hook.
+ * Register infth_image_slider_settings_init to the admin_init action hook.
  */
 add_action('admin_init', 'infth_image_slider_settings_init');
 
@@ -216,7 +217,7 @@ add_action('admin_init', 'infth_image_slider_settings_init');
  */
 function infth_image_slider_section_developers_callback( $args ){
     ?>
-    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e('Insert only positive integer value.', 'infthimageslider'); ?></p>
+    <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e('Insert only positive integer value.', 'infth_image_slider'); ?></p>
     <?php
 }
 
@@ -227,19 +228,20 @@ function infth_image_slider_field_speed_cb( $args ){
     // Get the value of the settings we've registered with register_settings()
     // TODO: where the data has saved and how to retreive
     $options = get_option('infth_image_slider_options');
+    $value = (!isset( $options[$args['name']])) ? null : $options[$args['name']];
     ?>
-    
+
     <input
         type="number"
-        name="<?php echo esc_attr( $args['label_for']); ?>"
-        value=<?php echo esc_attr( $args['infth_image_slider_custom_data']); ?>
-        placeholder="<?php esc_html_e( 20000, 'infthimageslider' ); ?>"
+        name="infth_image_slider_options[<?php esc_attr_e($args['label_for']); ?>]"
+        value="<?php (esc_attr( $value ) < 1000) ? esc_attr_e(20000) : esc_attr_e( $value ); ?>" 
+        placeholder="<?php esc_html_e( 20000, 'infth_image_slider' ); ?>"
     />
-    </label>
-    
+
     <p class="description">
-        <?php esc_html_e('Slider speed is in miliseconds. Like 5000 is equal to 5seconds. Default is 20000 or 20seconds.', 'infthimageslider'); ?>
+        <?php esc_html_e('Slider speed is in miliseconds. Like 5000 is equal to 5seconds. Default is 20000 or 20seconds. Minimum value should be 1000 or 1second.', 'infth_image_slider'); ?>
     </p>
+    
     <?php
 }
 
@@ -251,7 +253,7 @@ function infth_image_slider_options_page(){
         'INFthimageslider',
         'INFth Options',
         'manage_options',
-        'infthimageslider',
+        'infth_image_slider',
         'infth_image_slider_options_page_html'
     );
 }
@@ -276,21 +278,21 @@ function infth_image_slider_options_page_html(){
     // WordPress will add the "settings-updated" $_GET parameter to the url
     if( isset( $_GET['settings-updated'] ) ){
         // add settings saved with the class of "updated"
-        add_settings_error( 'infthimageslider_messages', 'infthimageslider_message', __( 'Settings Saved', 'infthimageslider'), 'updated' );
+        add_settings_error( 'infth_image_slider_messages', 'infth_image_slider_message', __( 'Settings Saved', 'infth_image_slider'), 'updated' );
     }
 
     // show error/update messages
-    settings_errors('infthimageslider_messages');
+    settings_errors('infth_image_slider_messages');
     ?>
     <div class="wrap">
         <h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
         <form action="options.php" method="post">
             <?php
-            // output security fields for the registered setting "infthimageslider"
-            settings_fields('infthimageslider');
+            // output security fields for the registered setting "infth_image_slider"
+            settings_fields('infth_image_slider');
             // output settings sections and their fields
-            // (sections are registered for "infthimageslider", each field is registered to a specific section)
-            do_settings_sections('infthimageslider');
+            // (sections are registered for "infth_image_slider", each field is registered to a specific section)
+            do_settings_sections('infth_image_slider');
             // output save settings button
             submit_button( 'Save Settings' );
             ?>
