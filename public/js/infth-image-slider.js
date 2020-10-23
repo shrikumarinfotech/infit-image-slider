@@ -5,6 +5,17 @@ jQuery.noConflict();
 jQuery(document).ready(function( $ ){
     // INFTH Image Slider: Working Version
     function infthImageSliderAnimate(){
+        // Check if speed is defined/delivered or set the default value
+        let optionSpeed = parseInt($.trim( $('.infth-image-slider-field-speed').html() ));
+        if(optionSpeed === undefined || optionSpeed === null || optionSpeed === NaN){
+            optionSpeed = 20000;
+        }
+        else{
+            if( optionSpeed < 1000 || optionSpeed > 50000 ){
+                optionSpeed = 20000;
+            }
+            optionSpeed = optionSpeed;
+        }
         // Define the elements for slider
         const dataDiv = $('.module-infth-image-wrapper');
         let dataDivContent = $(dataDiv).find('.module-infth-image-slides');
@@ -40,7 +51,7 @@ jQuery(document).ready(function( $ ){
                 $(dataDiv).animate({
                     left: -dataDivWidth
                 }, {
-                    duration: 20000, // Animation duration * can be opted from html dynamically
+                    duration: optionSpeed, // Animation duration * can be opted from html dynamically. Default 20000.
                     easing: 'linear',
                     complete: function(){
                         // Reset the position after animation is completed

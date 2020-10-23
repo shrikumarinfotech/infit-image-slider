@@ -8,6 +8,11 @@
     background-color: #b1b1b1;
     overflow: hidden;
 
+    //hidden div
+    .infth-image-slider-field-speed{
+        display: none;
+    }
+
     // This div will animate
     .module-infth-image-wrapper{
         position: absolute;

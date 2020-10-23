@@ -96,78 +96,6 @@ function infth_image_slider_add_image(){
 }
 add_action('init', 'infth_image_slider_add_image');
 
-
-// infthimageslider load all posts function
-function infth_image_slider(){
-    // query for post type infthimageslider and collect data as object
-    $infthImagePosts = new WP_Query( array(
-        'posts_per_page' => -1,
-        'post_type' => 'infthimageslider',
-        'order' => 'ASC'
-    ) );
-?>
-    <div class="module-infth-image-slider">
-        <div class="module-infth-image-wrapper">
-            <div class="module-infth-image-slides">
-                <?php if( $infthImagePosts->have_posts() ) : while ( $infthImagePosts->have_posts() ) : $infthImagePosts->the_post(); ?>
-                    <div class="infth-slide">
-                        <div class="infth-slide-image">
-                            <img class="infth-slide-image-object" src="<?php the_post_thumbnail_url('thumbnail'); ?>" alt="<?php the_title(); ?>">
-                        </div>
-                    </div>
-                <?php endwhile; else: ?>
-                    <p>No images found. Please upload some images.</p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-<?php
-}
-/**
- * Front-end functions
- */
-// Shortcode function
-function infth_image_slider_shortcode( $atts=[], $infth_image_content = null){
-    // enclosing tags
-    if( ! is_null($infth_image_content) ) {
-        // secure output by executing the_content filter hook on $infth_image_content
-        $infth_image_data = apply_filters('the_content', $infth_image_content);
-        $infth_image_data .= infth_image_slider();
-        // run shortcode parser recursively
-        $infth_image_data .= do_shortcode($infth_image_content);
-    }
-    // return output
-    return $infth_image_data;
-}
-function infth_image_slider_shortcodes_init(){
-    if( !shortcode_exists('infth-image-slider') ){
-        add_shortcode('infth-image-slider', 'infth_image_slider_shortcode');
-    }    
-}
-add_action('init', 'infth_image_slider_shortcodes_init');
-
-// Load plugin textdomain
-function infth_image_slider_textdomain(){
-    $test = load_plugin_textdomain('infth-image-slider', false, dirname(plugin_basename(__FILE__)) . '/languages' );
-}
-add_action('init', 'infth_image_slider_textdomain');
-
-// Load CSS and JS files
-// load CSS file
-function infth_image_slider_enqueue_style(){
-    wp_enqueue_style('infth-image-slider', plugins_url( '/public/css/infth-image-slider.css', __FILE__ ), false, true);
-}
-// load JS files
-function infth_image_slider_enqueue_script(){
-    wp_register_script('jquery-3.5.1', plugins_url('/infth-image-slider/public/js/jquery-3.5.1.min.js'), false, true);
-    wp_enqueue_script('jquery-3.5.1');
-    wp_enqueue_script('infth-image-slider', plugins_url( '/public/js/infth-image-slider.js', __FILE__ ), false, true);
-}
-
-add_action('wp_enqueue_scripts', 'infth_image_slider_enqueue_style');
-add_action('wp_enqueue_scripts', 'infth_image_slider_enqueue_script');
-
 /**
  * Custom Admin Options and Settings using WordPress Settings API, Options API
  * Reference URI: https://developer.wordpress.org/plugins/settings/custom-settings-page/
@@ -194,6 +122,7 @@ function infth_image_slider_settings_init(){
         array(
             'name'          => 'infth_image_slider_field_speed',
             'label_for'     => 'infth_image_slider_field_speed',
+            'id'            => 'infth_image_slider_field_speed',
             'class'         => 'infth_image_slider_row',
             'infth_image_slider_custom_data'  =>  'custom',
         )
@@ -226,22 +155,21 @@ function infth_image_slider_section_developers_callback( $args ){
  */
 function infth_image_slider_field_speed_cb( $args ){
     // Get the value of the settings we've registered with register_settings()
-    // TODO: where the data has saved and how to retreive
     $options = get_option('infth_image_slider_options');
     $value = (!isset( $options[$args['name']])) ? null : $options[$args['name']];
     ?>
 
     <input
-        type="number"
-        name="infth_image_slider_options[<?php esc_attr_e($args['label_for']); ?>]"
-        value="<?php (esc_attr( $value ) < 1000) ? esc_attr_e(20000) : esc_attr_e( $value ); ?>" 
+        type="number" 
+        class="<?php esc_attr_e($args['id']); ?>" 
+        name="infth_image_slider_options[<?php esc_attr_e($args['name']); ?>]" 
+        value="<?php (esc_attr( $value ) < 1000 || esc_attr( $value ) > 50000 ) ? esc_attr_e(20000) : esc_attr_e( $value ); ?>"  
         placeholder="<?php esc_html_e( 20000, 'infth_image_slider' ); ?>"
     />
 
     <p class="description">
         <?php esc_html_e('Slider speed is in miliseconds. Like 5000 is equal to 5seconds. Default is 20000 or 20seconds. Minimum value should be 1000 or 1second.', 'infth_image_slider'); ?>
     </p>
-    
     <?php
 }
 
@@ -300,3 +228,84 @@ function infth_image_slider_options_page_html(){
     </div>
     <?php
 }
+/**
+ * Render Slider
+ */
+// infthimageslider load all posts function
+function infth_image_slider(){
+    // query for post type infthimageslider and collect data as object
+    $infthImagePosts = new WP_Query( array(
+        'posts_per_page' => -1,
+        'post_type' => 'infthimageslider',
+        'order' => 'ASC'
+    ) );
+?>
+    <div class="module-infth-image-slider">
+        <div class="module-infth-image-wrapper">
+            <div class="module-infth-image-slides">
+                <?php if( $infthImagePosts->have_posts() ) : while ( $infthImagePosts->have_posts() ) : $infthImagePosts->the_post(); ?>
+                    <div class="infth-slide">
+                        <div class="infth-slide-image">
+                            <img class="infth-slide-image-object" src="<?php the_post_thumbnail_url('thumbnail'); ?>" alt="<?php the_title(); ?>">
+                        </div>
+                    </div>
+                <?php endwhile; else: ?>
+                    <p>No images found. Please upload some images.</p>
+                <?php endif; ?>
+                <div class="infth-image-slider-field-speed">
+                    <?php
+                        $options = get_option('infth_image_slider_options', false);
+                        if( $options ){
+                            esc_attr_e( $options['infth_image_slider_field_speed'] );
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+<?php
+}
+/**
+ * Front-end functions
+ */
+// Shortcode function
+function infth_image_slider_shortcode( $atts=[], $infth_image_content = null){
+    // enclosing tags
+    if( ! is_null($infth_image_content) ) {
+        // secure output by executing the_content filter hook on $infth_image_content
+        $infth_image_data = apply_filters('the_content', $infth_image_content);
+        $infth_image_data .= infth_image_slider();
+        // run shortcode parser recursively
+        $infth_image_data .= do_shortcode($infth_image_content);
+    }
+    // return output
+    return $infth_image_data;
+}
+function infth_image_slider_shortcodes_init(){
+    if( !shortcode_exists('infth-image-slider') ){
+        add_shortcode('infth-image-slider', 'infth_image_slider_shortcode');
+    }    
+}
+add_action('init', 'infth_image_slider_shortcodes_init');
+
+// Load plugin textdomain
+function infth_image_slider_textdomain(){
+    $test = load_plugin_textdomain('infth-image-slider', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+}
+add_action('init', 'infth_image_slider_textdomain');
+
+// Load CSS and JS files
+// load CSS file
+function infth_image_slider_enqueue_style(){
+    wp_enqueue_style('infth-image-slider', plugins_url( '/public/css/infth-image-slider.css', __FILE__ ), false, true);
+}
+// load JS files
+function infth_image_slider_enqueue_script(){
+    wp_register_script('jquery-3.5.1', plugins_url('/infth-image-slider/public/js/jquery-3.5.1.min.js'), false, true);
+    wp_enqueue_script('jquery-3.5.1');
+    wp_enqueue_script('infth-image-slider', plugins_url( '/public/js/infth-image-slider.js', __FILE__ ), false, true);
+}
+
+add_action('wp_enqueue_scripts', 'infth_image_slider_enqueue_style');
+add_action('wp_enqueue_scripts', 'infth_image_slider_enqueue_script');

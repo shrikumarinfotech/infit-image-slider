@@ -8,6 +8,10 @@
   overflow: hidden;
 }
 
+.module-infth-image-slider .infth-image-slider-field-speed {
+  display: none;
+}
+
 .module-infth-image-slider .module-infth-image-wrapper {
   position: absolute;
   display: -webkit-box;
