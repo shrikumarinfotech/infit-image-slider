@@ -23,7 +23,6 @@
 */
 
 // INFth Image Slider Starts here
-// Note: "infth-image-slider" prefix can be replaced by "infthimageslider" if the later is shorter
 // If this file is called directly abort
 if( !defined('WPINC')){
     die;
@@ -252,15 +251,15 @@ function infth_image_slider(){
                 <?php endwhile; else: ?>
                     <p>No images found. Please upload some images.</p>
                 <?php endif; ?>
-                <div class="infth-image-slider-field-speed">
-                    <?php
-                        $options = get_option('infth_image_slider_options', false);
-                        if( $options ){
-                            esc_attr_e( $options['infth_image_slider_field_speed'] );
-                        }
-                    ?>
-                </div>
             </div>
+        </div>
+        <div class="infth-image-slider-field-speed">
+            <?php
+                $options = get_option('infth_image_slider_options', false);
+                if( $options ){
+                    esc_attr_e( $options['infth_image_slider_field_speed'] );
+                }
+            ?>
         </div>
     </div>
     <div class="clearfix"></div>

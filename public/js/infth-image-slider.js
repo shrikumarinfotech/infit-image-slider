@@ -5,15 +5,18 @@ jQuery.noConflict();
 jQuery(document).ready(function( $ ){
     // INFTH Image Slider: Working Version
     function infthImageSliderAnimate(){
-        // Check if speed is defined/delivered or set the default value
+        // Check if speed is defined/delivered and validate or set the default value
         let optionSpeed = parseInt($.trim( $('.infth-image-slider-field-speed').html() ));
         if(optionSpeed === undefined || optionSpeed === null || optionSpeed === NaN){
+            // if not defined set default value
             optionSpeed = 20000;
         }
         else{
+            // if not within limit set to default value
             if( optionSpeed < 1000 || optionSpeed > 50000 ){
                 optionSpeed = 20000;
             }
+            // else deliver given value
             optionSpeed = optionSpeed;
         }
         // Define the elements for slider
