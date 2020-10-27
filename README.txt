@@ -1,4 +1,4 @@
-== INF Image Slider ==
+== INFit Image Slider ==
 Tags: images, slider, image carousel, image slider, continious image scroll
 Requires at least: 5.5.1
 Tested up to : 5.5.1
