@@ -1,12 +1,12 @@
-// function for infinite image scroll
+// function for INFit Image Slider
 'use strict';
 
 jQuery.noConflict();
 jQuery(document).ready(function( $ ){
-    // INFTH Image Slider: Working Version
-    function infthImageSliderAnimate(){
+    // INFIT Image Slider: Working Version
+    function infitImageSliderAnimate(){
         // Check if speed is defined/delivered and validate or set the default value
-        let optionSpeed = parseInt($.trim( $('.infth-image-slider-field-speed').html() ));
+        let optionSpeed = parseInt($.trim( $('.infit-image-slider-field-speed').html() ));
         if(optionSpeed === undefined || optionSpeed === null || optionSpeed === NaN){
             // if not defined set default value
             optionSpeed = 20000;
@@ -20,8 +20,8 @@ jQuery(document).ready(function( $ ){
             optionSpeed = optionSpeed;
         }
         // Define the elements for slider
-        const dataDiv = $('.module-infth-image-wrapper');
-        let dataDivContent = $(dataDiv).find('.module-infth-image-slides');
+        const dataDiv = $('.module-infit-image-wrapper');
+        let dataDivContent = $(dataDiv).find('.module-infit-image-slides');
         let dataDivContentLength = dataDivContent.length;
         // Define window width
         let totalWindowWidth = $(window).width();
@@ -42,7 +42,7 @@ jQuery(document).ready(function( $ ){
         let dataDivWidth;
         dataDiv.promise().done(function(){
             // re-assign values
-            dataDivContent = $(dataDiv).find('.module-infth-image-slides');
+            dataDivContent = $(dataDiv).find('.module-infit-image-slides');
             dataDivContentLength = dataDivContent.length;
             dataDivWidth = dataDivContent.width() * ( dataDivContentLength / 2 );
         }); // After appending is done get the width of two(2) elements or
@@ -65,8 +65,8 @@ jQuery(document).ready(function( $ ){
         });
     }
     // Check if slider module exists in DOM
-    if($('.module-infth-image-slider').length !== 0){
+    if($('.module-infit-image-slider').length !== 0){
         // If yes, run the funtion
-        infthImageSliderAnimate();
+        infitImageSliderAnimate();
     }
 });

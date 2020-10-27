@@ -15,14 +15,14 @@ You can add images and display them in a scrolling loop. Good for display client
 == Installation ==
 
 Process 1:
-Go to your WordPress admin `dashboard`. Then under `Plugins` menu click `Add New`. Click the `Upload Plugin` button and select the `infth-image-slider.zip` file and click `Install Now`. After installation complete click `Activate`.
+Go to your WordPress admin `dashboard`. Then under `Plugins` menu click `Add New`. Click the `Upload Plugin` button and select the `infit-image-slider.zip` file and click `Install Now`. After installation complete click `Activate`.
 
 Process 2:
-Extract the `infth-image-slider.zip` archive and copy the files into your WordPress root > `/wp-content/plugins/` directory and paste files. Then go to your WordPress `dashboard > Plugins > Installed Plugins > INFth Image Slider` and click `Activate`.
+Extract the `infit-image-slider.zip` archive and copy the files into your WordPress root > `/wp-content/plugins/` directory and paste files. Then go to your WordPress `dashboard > Plugins > Installed Plugins > INFit Image Slider` and click `Activate`.
 
 You can display slider on front end by using either one of the following:
-1. Add this shortcode to display the slider into a page/post/widgets: `[infth-image-slider]`
-2. Add this php code to your template files: `<?php infth_image_slider(); ?>`
+1. Add this shortcode to display the slider into a page/post/widgets: `[infit-image-slider]`
+2. Add this php code to your template files: `<?php infit_image_slider(); ?>`
 
 
 == Screenshots ==

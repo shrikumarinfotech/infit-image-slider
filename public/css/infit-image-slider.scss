@@ -1,5 +1,5 @@
 // Module Continious Image Carousel
-.module-infth-image-slider{
+.module-infit-image-slider{
     position: relative;
     margin: 0;
     padding: 0;
@@ -9,12 +9,12 @@
     overflow: hidden;
 
     //hidden div
-    .infth-image-slider-field-speed{
+    .infit-image-slider-field-speed{
         display: none;
     }
 
     // This div will animate
-    .module-infth-image-wrapper{
+    .module-infit-image-wrapper{
         position: absolute;
         display: flex;
         flex-direction: row;
@@ -23,7 +23,7 @@
         width: auto;
         height: inherit;
         
-        .module-infth-image-slides{
+        .module-infit-image-slides{
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -31,20 +31,20 @@
             width: auto;
             height: inherit;
 
-            .infth-slide{
+            .infit-slide{
                 position: relative;
                 display: block;
                 width: 150px;
                 height: 100px;
                 overflow: hidden;
 
-                .infth-slide-image{
+                .infit-slide-image{
                     margin-left: 5px;
                     margin-right: 5px;
                     width: inherit;
                     height: inherit;
 
-                    .infth-slide-image-object{
+                    .infit-slide-image-object{
                         width: inherit;
                         height: inherit;
                         object-fit: cover;
