@@ -27,8 +27,9 @@ You can display slider on front end by using either one of the following:
 
 == Screenshots ==
 
-1. Admin Interface Image Gallery: screenshot-1.png
-2. Admin Interface Single Image: screenshot-2.png
-3. Admin Interface Options Panel: screenshot-3.png
-4. Admin Interface Page Shortcode: screenshot-4.png
-5. Front End Slider Display: screenshot-5.png
+1. Admin Interface Plugin Page: screenshot-1.png
+2. Admin Interface Image Gallery: screenshot-2.png
+3. Admin Interface Single Image: screenshot-3.png
+4. Admin Interface Options Panel: screenshot-4.png
+5. Admin Interface Page Shortcode: screenshot-5.png
+6. Front End Slider Display: screenshot-6.png
