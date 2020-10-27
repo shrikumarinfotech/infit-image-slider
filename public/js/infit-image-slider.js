@@ -1,3 +1,7 @@
+/*
+* License:              GPLv2 or later
+* License URI:          http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+*/
 // function for INFit Image Slider
 'use strict';
 
